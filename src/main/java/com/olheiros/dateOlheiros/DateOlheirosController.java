@@ -13,11 +13,14 @@ public class DateOlheirosController {
 
     @GetMapping
     @ResponseBody
-    public ResponseEntity<String> currentMonth() {
+    public ResponseEntity<DateModel> currentMonth() {
 
-        String date = String.valueOf(Calendar.getInstance().get(Calendar.MONTH));
+        DateModel dateModel = new DateModel();
+        dateModel.setDay(String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)));
+        dateModel.setMonth(String.valueOf(Calendar.getInstance().get(Calendar.MONTH)));
+        dateModel.setYear(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
 
-        return ResponseEntity.ok(date);
+        return ResponseEntity.ok(dateModel);
 
     }
 }
