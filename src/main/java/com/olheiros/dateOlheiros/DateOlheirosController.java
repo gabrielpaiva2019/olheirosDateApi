@@ -18,7 +18,7 @@ public class DateOlheirosController {
 
         DateModel dateModel = new DateModel();
         dateModel.setDay(String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)));
-        dateModel.setMonth(String.valueOf(Calendar.getInstance().get(Calendar.MONTH)));
+        dateModel.setMonth(String.valueOf(Calendar.getInstance().get(Calendar.MONTH)+1));
         dateModel.setYear(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
 
         return ResponseEntity.ok(dateModel);
