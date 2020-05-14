@@ -3,6 +3,9 @@ package com.olheiros.dateOlheiros;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.*;
+import com.olheiros.dateOlheiros.model.DateModel;
+import com.olheiros.dateOlheiros.model.Jogador;
+import com.olheiros.dateOlheiros.model.UsuariosCadastrados;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
@@ -61,6 +64,34 @@ public class DateOlheirosController {
 
         responseAfterTenSeconds();
         return ResponseEntity.ok(jogadores);
+
+    }
+
+    @GetMapping("/quantidadeUsuariosCadastrados")
+    @ResponseBody
+    public ResponseEntity<UsuariosCadastrados> quantidadeUsuariosCadastrados() {
+        List<Jogador> jogadores = new ArrayList<>();
+        FirebaseHelper.userReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    jogadores.add(dataSnapshot.getValue(Jogador.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+
+        });
+
+        responseAfterTenSeconds();
+
+        UsuariosCadastrados usuariosCadastrados = new UsuariosCadastrados();
+        usuariosCadastrados.setQuantidadeUsuariosCadastrados(String.valueOf(jogadores.size()));
+        return ResponseEntity.ok(usuariosCadastrados);
 
     }
 

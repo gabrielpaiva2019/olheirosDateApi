@@ -1,4 +1,4 @@
-package com.olheiros.dateOlheiros;
+package com.olheiros.dateOlheiros.model;
 
 public class Jogador {
     private String celularJogador;

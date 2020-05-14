@@ -1,5 +1,7 @@
 package com.olheiros.dateOlheiros;
 
+import com.olheiros.dateOlheiros.model.Jogador;
+
 import java.util.ArrayList;
 import java.util.List;
 
